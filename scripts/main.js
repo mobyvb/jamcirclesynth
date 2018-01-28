@@ -55,11 +55,13 @@ var changingDecay = false;
 var changingSustain = false;
 var changingRelease = false;
 var ampEnv;
+var osc;
 
 function loaded() {
   c = document.getElementById('envelope-canvas');
   ctx = c.getContext('2d');
   redraw();
+  generateEnvelope();
 
   var playingNote = false;
   $('body').keypress(function(e) {
@@ -103,10 +105,13 @@ function loaded() {
   });
 
   $('body').mouseup(function(e) {
-    changingAttack = false;
-    changingDecay = false;
-    changingSustain = false;
-    changingRelease = false;
+    if (changingAttack || changingDecay || changingSustain || changingRelease) {
+      changingAttack = false;
+      changingDecay = false;
+      changingSustain = false;
+      changingRelease = false;
+      generateEnvelope();
+    }
   });
 
   $('body').mousemove(function(e) {
@@ -161,12 +166,18 @@ function redraw() {
   ctx.lineTo(canvasWidth, canvasHeight)
   ctx.stroke();
 
+}
+
+function generateEnvelope() {
   /*attack.value = 0.3;
   decay.value = 0.1;
   sustain.value = 0;
   release.value = 0.5;*/
   if (ampEnv) {
     ampEnv.dispose();
+  }
+  if (osc) {
+    osc.dispose();
   }
   ampEnv = new Tone.AmplitudeEnvelope({
     attack: attack.value,
@@ -175,7 +186,7 @@ function redraw() {
     release: release.value
   }).toMaster();
 
-  var osc = new Tone.Oscillator().connect(ampEnv).start();
+  osc = new Tone.Oscillator().connect(ampEnv).start();
 }
 
 function bound(value, min, max) {
