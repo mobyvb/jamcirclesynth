@@ -1,0 +1,25 @@
+.envelope-container {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  margin: auto;
+}
+
+#envelope-canvas {
+  position: absolute;
+  border: 1px solid black;
+}
+
+.envelope-control {
+  z-index: 1;
+  border: 2px dashed black;
+  position: absolute;
+}
+
+.attack-handle:hover, .decay-handle:hover, .release-handle:hover {
+  cursor: ew-resize;
+}
+
+.sustain-handle:hover {
+  cursor: ns-resize;
+}

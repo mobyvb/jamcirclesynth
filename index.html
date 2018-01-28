@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Synth</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script src="./lib/Tone.min.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
+  </head>
+
+  <body>
+    <div class="envelope-container">
+      <canvas id="envelope-canvas" width="500" height="300">Your browser does not support the HTML5 canvas tag.</canvas>
+      <div class="envelope-control attack-handle" id="attack-handle"></div>
+      <div class="envelope-control decay-handle" id="decay-handle"></div>
+      <div class="envelope-control sustain-handle" id="sustain-handle"></div>
+      <div class="envelope-control release-handle" id="release-handle"></div>
+    </div>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
